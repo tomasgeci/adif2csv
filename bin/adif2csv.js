@@ -29,8 +29,9 @@ const boxenOptions = {
     backgroundColor: "#445544"
 };
 
-const msgBox = boxen(loadedMsg, boxenOptions)
-console.log(msgBox);
+console.log(boxen(loadedMsg, boxenOptions));
+
+let start = new Date();
 
 try {
     const adifFileContent = readFileSync(cliOptions.file, 'utf8');
@@ -63,8 +64,8 @@ try {
 
     const finishedMsg = chalk.green.bold(`Converted ADIF file ${cliOptions.file} to ${cliOptions.file}.csv with ${count} QSO records`)
 
-    const msgBox = boxen(finishedMsg, boxenOptions)
-    console.log(msgBox);
+    console.log(boxen(finishedMsg, boxenOptions));
+    console.log('Execution time: %dms', new Date() - start);
 
 } catch (err) {
     console.error(err)
