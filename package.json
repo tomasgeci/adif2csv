@@ -1,0 +1,23 @@
+{
+  "name": "adif2csv",
+  "version": "1.0.0",
+  "description": "HamRadio ADIF format converter to CSV",
+  "main": "bin/adif2csv.js",
+  "bin": {
+    "adif2csv": "bin/adif2csv.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "Tomas Geci OM5AST",
+  "license": "MIT",
+  "dependencies": {
+    "@types/yargs": "^17.0.7",
+    "adif-parser-ts": "^0.4.13",
+    "boxen": "^6.2.1",
+    "chalk": "^5.0.0",
+    "convert-array-to-csv": "^2.0.0",
+    "yargs": "^17.3.0"
+  }
+}
