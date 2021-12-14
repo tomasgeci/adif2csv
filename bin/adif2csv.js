@@ -53,8 +53,7 @@ try {
         );
     });
 
-    let options = {separator: ','};
-    const csv = convertArrayToCSV(arrayForCsv, options);
+    const csv = convertArrayToCSV(arrayForCsv, {separator: ','});
 
     writeFile(cliOptions.file + '.csv', csv, function (err) {
         if (err) {

@@ -1,5 +1,15 @@
-npm install
+# ADIF to CSV file converter
+Simple tool to convert HamRadio ADIF file format to standard Comma Separated Value (CSV) file
 
-./bin/adif2csv.js -f adif_file.adi
+## Install Nodejs and NPM
+[https://nodejs.org/en/download/](https://nodejs.org/en/download/)
 
-todo add station callsign
+## Install dependencies
+```npm install```
+
+## Example of usage
+```./bin/adif2csv.js -f adif_file.adi```
+
+## TODO
+- tests
+- date and time formatting
