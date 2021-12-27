@@ -12,4 +12,5 @@ Simple tool to convert HamRadio ADIF file format to standard Comma Separated Val
 
 ## TODO
 - tests
-- date and time formatting
+- better submode handling
+- better time format handling

@@ -7,10 +7,11 @@ import chalk from 'chalk';
 import boxen from 'boxen';
 import {AdifParser} from 'adif-parser-ts';
 import {convertArrayToCSV} from 'convert-array-to-csv';
+import dayjs from 'dayjs';
 
 const cliOptions = yargs(hideBin(process.argv))
     .usage("Usage: -f <file>")
-    .version('1.0.0')
+    .version('1.2.0')
     .option('f', {
         alias: "file",
         describe: "Path to ADIF file ",
@@ -35,18 +36,23 @@ let start = new Date();
 
 try {
     const adifFileContent = readFileSync(cliOptions.file, 'utf8');
+    const mfskSubMode = 'MFSK';
+    const qsoDateInputFormat = 'YYYYMMDD';
+    const qsoDateOutputFormat = 'DD-MMM-YYYY';
     let adifContent = AdifParser.parseAdi(adifFileContent);
     let count = adifContent.records.length;
     let arrayForCsv = [];
 
     adifContent.records.forEach(record => {
+        let qsoDate = dayjs(record['qso_date'], qsoDateInputFormat);
+        let timeSegments = record['time_on'].match(/.{1,2}/g);
         arrayForCsv.push(
             {
                 'call': record['call'],
                 'band': record['band'],
-                'mode': record['mode'],
-                'time_on': record['time_on'],
-                'qso_date': record['qso_date'],
+                'mode': (record['mode'] === mfskSubMode) ? record['submode'] : record['mode'],
+                'time_on': timeSegments[0] + ':' + timeSegments[1],
+                'qso_date': qsoDate.format(qsoDateOutputFormat),
                 'rst_rcvd': record['rst_rcvd'],
                 'rst_sent': record['rst_sent']
             }
