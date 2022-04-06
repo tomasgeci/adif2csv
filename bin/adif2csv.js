@@ -35,10 +35,10 @@ console.log(boxen(loadedMsg, boxenOptions));
 let start = new Date();
 
 try {
-    const adifFileContent = readFileSync(cliOptions.file, 'utf8');
     const mfskSubMode = 'MFSK';
     const qsoDateInputFormat = 'YYYYMMDD';
     const qsoDateOutputFormat = 'DD-MMM-YYYY';
+    let adifFileContent = readFileSync(cliOptions.file, 'utf8');
     let adifContent = AdifParser.parseAdi(adifFileContent);
     let count = adifContent.records.length;
     let arrayForCsv = [];
